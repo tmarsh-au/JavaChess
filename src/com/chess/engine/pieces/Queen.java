@@ -1,3 +1,8 @@
+/**
+ *  Created by Thomas Marsh on 23/10/2019
+ *  Using this tutorial -> https://www.youtube.com/playlist?list=PLOJzCFLZdG4zk5d-1_ah2B4kqZSeIlWtt
+ */
+
 package com.chess.engine.pieces;
 
 import com.chess.engine.Alliance;
@@ -10,6 +15,8 @@ import com.google.common.collect.ImmutableList;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import static com.chess.engine.board.Move.*;
 
 public class Queen extends Piece {
 
@@ -33,13 +40,13 @@ public class Queen extends Piece {
                 if(BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
                     final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
                     if(!candidateDestinationTile.isTileOccupied()) {
-                        legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
+                        legalMoves.add(new MajorMove(board, this, candidateDestinationCoordinate));
                     } else {
                         final Piece pieceAtDestination = candidateDestinationTile.getPiece();
                         final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
 
                         if(this.pieceAlliance != pieceAlliance) {
-                            legalMoves.add(new Move.AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
+                            legalMoves.add(new AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
                         }
                         break;
                     }
