@@ -26,9 +26,7 @@ public class Rook extends Piece{
 
     @Override
     public Collection<Move> calculateLegalMoves(final Board board) {
-
         final List<Move> legalMoves = new ArrayList<>();
-
         for(final int candidateCoordinateOffset: CANDIDATE_MOVE_VECTOR_COORDINATES) {
             int candidateDestinationCoordinate = this.piecePosition;
             while(BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
@@ -53,7 +51,6 @@ public class Rook extends Piece{
                 }
             }
         }
-
         return ImmutableList.copyOf(legalMoves);
     }
 
